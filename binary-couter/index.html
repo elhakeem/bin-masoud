@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>عداد النظام الثنائي</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Mada", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        background-image: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        color: white;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 100svh;
+        align-items: stretch;
+        justify-content: stretch;
+      }
+      .container > div {
+        flex: 1;
+      }
+      .system {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        border-bottom: 1px solid #ffffff20;
+      }
+      .system h2 {
+        font-size: 8vw;
+        margin: 0;
+      }
+      .system h2 span {
+        color: #00000080;
+      }
+      .counters {
+        display: flex;
+        align-items: stretch;
+        justify-content: stretch;
+      }
+      button {
+        flex: 1;
+        font-size: 3rem;
+        border: none;
+        background: #6b37029c;
+        cursor: pointer;
+        border-top: 1px solid #ffffff20;
+        color: white;
+      }
+      button:first-of-type {
+        background: #02266b9c;
+        border-left: 1px solid #ffffff20;
+      }
+      @media screen and (max-width: 1000px) {
+        .system {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 10px;
+        }
+        .system h2 {
+          align-self: flex-end;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="system">
+        <h1>عداد العشري</h1>
+        <h2 id="decemal"></h2>
+      </div>
+      <div class="system">
+        <h1>عداد الثنائي</h1>
+        <h2 id="binary"></h2>
+      </div>
+      <div class="system">
+        <h1>عداد السداسي عشري</h1>
+        <h2 id="hexadecemal"></h2>
+      </div>
+      <div class="counters">
+        <button class="increment">+</button>
+        <button class="decrement">-</button>
+      </div>
+    </div>
+    <script>
+      let count = 0;
+      const binaryHeader = document.getElementById("binary");
+      const decemalHeader = document.getElementById("decemal");
+      const hexadecemalHeader = document.getElementById("hexadecemal");
+
+      function updateCounters() {
+        addDigits(binaryHeader, count.toString(2), 16, "0");
+        addDigits(decemalHeader, count.toString(10), 16, "0");
+        addDigits(hexadecemalHeader, count.toString(16).toUpperCase(), 16, "0");
+      }
+      function addDigits(element, str, length, char) {
+        const span = document.createElement("span");
+        span.innerText = "".padStart(length - str.length, char);
+        element.innerHTML = "";
+        element.appendChild(span);
+        element.appendChild(document.createTextNode(str));
+      }
+
+      document.querySelector(".increment").addEventListener("click", () => {
+        count++;
+        updateCounters();
+      });
+
+      document.querySelector(".decrement").addEventListener("click", () => {
+        if (count > 0) {
+          count--;
+          updateCounters();
+        }
+      });
+
+      // Initialize counters on page load
+      updateCounters();
+    </script>
+  </body>
+</html>
