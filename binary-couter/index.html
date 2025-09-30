@@ -62,6 +62,11 @@
         background: #02266b9c;
         border-left: 1px solid #ffffff20;
       }
+      .system p {
+        color: #ffffff57;
+        direction: ltr;
+        text-align: right;
+      }
       @media screen and (max-width: 1000px) {
         .system {
           flex-direction: column;
@@ -78,15 +83,55 @@
   <body>
     <div class="container">
       <div class="system">
-        <h1>عداد العشري</h1>
+        <div>
+          <h1>عداد العشري</h1>
+          <p>
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+          </p>
+        </div>
         <h2 id="decemal"></h2>
       </div>
       <div class="system">
-        <h1>عداد الثنائي</h1>
+        <div>
+          <h1>عداد الثنائي</h1>
+          <p>
+            <span>0</span>
+            <span>1</span>
+          </p>
+        </div>
         <h2 id="binary"></h2>
       </div>
       <div class="system">
-        <h1>عداد السداسي عشري</h1>
+        <div>
+          <h1>عداد السداسي عشري</h1>
+          <p>
+            <span>0</span>
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+            <span>6</span>
+            <span>7</span>
+            <span>8</span>
+            <span>9</span>
+            <span>A</span>
+            <span>B</span>
+            <span>C</span>
+            <span>D</span>
+            <span>E</span>
+            <span>F</span>
+          </p>
+        </div>
         <h2 id="hexadecemal"></h2>
       </div>
       <div class="counters">
@@ -104,6 +149,9 @@
         addDigits(binaryHeader, count.toString(2), 16, "0");
         addDigits(decemalHeader, count.toString(10), 16, "0");
         addDigits(hexadecemalHeader, count.toString(16).toUpperCase(), 16, "0");
+        console.log(count%2);
+        console.log(count%10);
+        console.log(count%16);
       }
       function addDigits(element, str, length, char) {
         const span = document.createElement("span");
